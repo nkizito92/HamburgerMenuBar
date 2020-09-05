@@ -38,7 +38,7 @@ Once you have this setup now it's time for you to add in some _div_ tags in side
 
 ##Awesome
 
-Now that this is set as well we need to add a class attribute to the parent _div_. Let's call it buns like so:
+Now that this is set as well, we need to add a class attribute to the parent _div_. Let's call it buns like so:
 
 ```
     <div class="buns">
@@ -72,7 +72,7 @@ Before we can jump to designing this delicious burger we need toaster to toast t
 
 ```
 
-Alright now lets jump to the design file. So far we only have 2 types of selectors we must alter. The _class selector_ for "buns" and the _tag selector_ for the 3 div's inside it. Ok now lets start with the class selector called "buns". We need to add a transition of 0.4s, border, a width/height with 300 or less pixels, and border-radius like so:
+Alright now lets jump to the design file. So far we only have 2 types of selectors we must make and alter. The _class selector_ for "buns" and the _tag selector_ for the 3 div's inside it. Ok now lets start with the class selector called "buns". We need to add the _elements_ _transition_ of 0.4 seconds, _border_, a width/height with 300 or less pixels, and _border-radius_ like so:
 
 ```
 .buns {
@@ -85,7 +85,7 @@ Alright now lets jump to the design file. So far we only have 2 types of selecto
 
 ```
 
-Next is the 3 div's with in the "buns" but this time replace the height and border with padding and margin. We also need to add a background-color as well so it should be set in this contexts:
+Next is the 3 div's within the "buns" but this time replace the height and border with padding and margin. We also need to add a background-color as well so it should be set in this contexts:
 
 ```
 .buns div {
@@ -95,7 +95,81 @@ Next is the 3 div's with in the "buns" but this time replace the height and bord
   background: black;
   border-radius: 20px;
   margin: 60px auto;
-  
+
 }
+```
+
+## Great
+
+If you followed all the instructions this far you should see the burger menu bar.
+
+## Animation Time
+
+Ok we got the hamburger menu bar fully set. Now it's time to added some animation. To do that we most add reactions to selectors themselves. We want the first and third div to form a down arrow when the mouse is hovering over the "buns". How do we make that happen? Well first we need to create another selector (divs inside the buns class selector) and add a _psuedo class_ called _hover_ like so:
+
+```
+.buns:hover div {
+}
+
+```
+
+In sided there will be a transition of 0.4 seconds and transform the first and third div to form a down arrow.
+like this:
+
+```
+.buns:hover div:nth-child(1) {
+  transition: 0.4s;
+  transform: translate(-50px, 80px) rotate(45deg);
+}
+
+.buns:hover div:nth-child(3) {
+  transition: 0.4s;
+  transform: translate(50px, -80px) rotate(135deg);
+}
+
+```
+
+What is _:nth-child()_ for is that another pseudo-class? Why yes it is another pseudo-class. _nth-child_ allows you to select the specific child with in the parent in this case I chose the first div and the third div. Ok What does translate and rotate do? In translate, it has to params required, the _x-axis_ and the _y-axis_.
+For rotate, you can sort of already guess what it does. It will rotate the first and 3 child div by 45 degrees and 135 degrees. Now for the 2 child div we are going to make it become invisible. All we need to do is add an _opacity_ of 0 and of course the _transition_.
+
+## Example
+
+```
+.buns:hover div:nth-child(2) {
+  transition: 0.2s;
+  opacity: 0;
+}
+
+```
+
+## Almost There!!
+
+Perfect now the last trick we need is to make the _border-raduis_ of the hamburger menu become a full circle when hovering over it. All we need to do is create another .buns class selector add _hover_ and _transition_ just like this:
+
+```
+.buns:hover {
+ transition: 0.4s;
+ border-radius: 95%;
+}
+```
+
+# Congratulations
+
+WOW!! you did it pat yourself on the back you deserve it!!
+
+## Extra trick
+
+To make the menu change color when you click it just make another .buns selector and add the pseudo class _active_
+like so:
+
+```
+ .buns:active {
+  background-color: orange;
+}
+
+ .buns:active div {
+  background-color: white;
+}
+
 
 ```
